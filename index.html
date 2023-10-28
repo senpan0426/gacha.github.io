@@ -1,0 +1,54 @@
+<h1 class="title">学校案内</h1>
+
+<div class="center" >
+  <img class="container" src="con.png">
+  <img class="handle" src="han.png">
+  <button class="btn">TAP</button>
+  </div>
+
+<style>
+
+.title {/*タイトル*/
+  text-align: center;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.center {/*画像中央配置*/
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+
+.container {/*ハンドル以外のガチャの外観*/
+  width: 70%;
+  height: auto;
+  margin-top:40%;
+  animation: slide 3s;
+ 
+}
+
+.handle{/*ハンドル*/
+    position: absolute;
+  width:10%;
+  max-width: 100px;
+  margin-top:75%;
+}
+
+.btn{/*ボタン*/
+  position: absolute;
+  margin-top:170%;
+  width:30%;
+  height:5%;
+  font-size:40px;
+}
+
+
+
+</style>
