@@ -1,9 +1,9 @@
 <h1 class="title">学校案内</h1>
 
 <div class="center" >
-  <img class="container" src="con.png">
-  <img class="handle" src="han.png">
-  <button class="btn">TAP</button>
+  <img id="container" src="con.png">
+  <img id="handle" src="han.png">
+  <button id="btn">TAP</button>
   </div>
 
 <style>
@@ -26,22 +26,21 @@
 }
 
 
-.container {/*ハンドル以外のガチャの外観*/
+#container {/*ハンドル以外のガチャの外観*/
   width: 70%;
   height: auto;
   margin-top:40%;
-  animation: slide 3s;
  
 }
 
-.handle{/*ハンドル*/
-    position: absolute;
+#handle{/*ハンドル*/
+  position: absolute;
   width:10%;
   max-width: 100px;
   margin-top:75%;
 }
 
-.btn{/*ボタン*/
+#btn{/*ボタン*/
   position: absolute;
   margin-top:170%;
   width:30%;
@@ -49,6 +48,69 @@
   font-size:40px;
 }
 
+@keyframes rotateHandle {
+  0% {
+    transform: rotate(0); 
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
+@keyframes slide {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-350px);
+  }
+}
+
+.animateHandle{
+    animation: rotateHandle 2s
+}
+
+.animateSlide{
+    animation: slide 3s;
+}
 
 </style>
+
+<script>
+let handleAnimation = false;
+let containerAnimation = false;
+let handle = document.getElementById("handle");
+let container = document.getElementById("container");
+
+document.getElementById("btn").onclick = function() {
+  if (!handleAnimation) {
+    handle.classList.add("animateHandle");
+    handleAnimation = true;
+
+    handle.addEventListener("animationend", function() {
+      handle.classList.remove("animateHandle");
+      handleAnimation = false;
+    }, {once: true});
+  }
+
+  if (!containerAnimation) {
+    setTimeout(function(){
+      container.classList.add("animateSlide");
+      handle.classList.add("animateSlide");
+      containerAnimation = true;
+
+      container.addEventListener("animationend", function() {
+        container.classList.remove("animateSlide");
+        handle.classList.remove("animateSlide");
+        containerAnimation = false;
+      }, {once: true});
+    },2000);
+  }
+};
+
+
+
+</script>
